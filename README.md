@@ -1,1 +1,1 @@
-# jewelry-project
+# Jewelry-project
