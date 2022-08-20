@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/user/Template.css">
+    @RenderSection("css", false)
+    <link rel="stylesheet" href="~/Content/user/font-awesome-all.min.css">
+    <link rel="stylesheet" href="~/Content/lib/swiper/swiper.min.css">
+</head>
+<body>
+    <main>
+        <header class="header">
+            <div class="header__container">
+                <div class="header__logo">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Content/images/logo-color.png" alt="Yash Gems">
+                    </a>
+                </div>
+                <div class="header__elements">
+                    <div class="header__search">
+                        @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "header__form" }))
+                        {
+                            <input class="header__form-input" type="search" name="keyword">
+                            <button class="header__form-button" type="submit">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                                    <path fill-rule="evenodd"
+                                          d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                </svg>
+                            </button>
+                        }
+                    </div>
+                    <div class="header__interaction">
+                        <div class="header__account">
+                            @{
+                                if (Session["user"] == null)
+                                {
+                                    <a class="link" href="@Url.Action("Login", "Account")">Login</a>
+                                }
+                                else
+                                {
+                                    <a class="link" href="@Url.Action("Profile", "Account")">Profile</a>
+                                }
+                            }
+                        </div>
+                        <div class="header__cart">
+                            <a class="header__cart-link" href="@Url.Action("Index", "Cart")">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart2"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <nav class="navigation">
+            <ul class="navigation__container">
+                <li class="navigation__list">
+                    <a class="navigation__link" href="@Url.Action("Index", "Home")">Home</a>
+                </li>
+                <li class="navigation__list">
+                    <a class="navigation__link" href="@Url.Action("Index", "Product")">Products</a>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="body">
+            @RenderBody()
+        </section>
+
+        <footer class="footer">
+            <div class="footer__container">
+                <div class="footer__box">
+                    <div class="footer__logo">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="~/Content/images/logo-none.png" alt="Yash Gems">
+                        </a>
+                    </div>
+                    <div>
+                        <div class="footer__information footer__row">
+                            <span class="footer__icon text--none">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt-fill"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                </svg>
+                            </span>
+                            <span class="text text--none">
+                                440/30 Nguyen Kiem Street, Ward 3, Phu Nhuan District, Ho Chi Minh City, Viet Nam
+                            </span>
+                        </div>
+                        <div class="footer__information footer__row">
+                            <span class="footer__icon text--none">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope-fill"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
+                                </svg>
+                            </span>
+                            <a class="link link--none" href="mailto:yashgems.jewelry@gmail.com">yashgems.jewelry@gmail.com</a>
+                        </div>
+                        <div class="footer__information footer__row">
+                            <span class="footer__icon text--none">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-telephone-fill"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M2.267.98a1.636 1.636 0 0 1 2.448.152l1.681 2.162c.309.396.418.913.296 1.4l-.513 2.053a.636.636 0 0 0 .167.604L8.65 9.654a.636.636 0 0 0 .604.167l2.052-.513a1.636 1.636 0 0 1 1.401.296l2.162 1.681c.777.604.849 1.753.153 2.448l-.97.97c-.693.693-1.73.998-2.697.658a17.47 17.47 0 0 1-6.571-4.144A17.47 17.47 0 0 1 .639 4.646c-.34-.967-.035-2.004.658-2.698l.97-.969z" />
+                                </svg>
+                            </span>
+                            <a class="link link--none" href="tel:(+84)903748326">(+84)903748326</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__box">
+                    <div class="footer__title text--none">Menu</div>
+                    <div class="footer__content">
+                        <div class="footer__row">
+                            <a class="link link--none" href="@Url.Action("Index", "Home")">Home</a>
+                        </div>
+                        <div class="footer__row">
+                            <a class="link link--none" href="@Url.Action("Index", "Product")">Products</a>
+                        </div>
+                        <div class="footer__row">
+                            <a class="link link--none" href="@Url.Action("Index", "Cart")">Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__box">
+                    <div class="footer__title text--none">Services</div>
+                    <div class="footer__content">
+                        <div class="footer__row">
+                            <a class="link link--none" href="@Url.Action("Login", "Account")">Login</a>
+                        </div>
+                        <div class="footer__row">
+                            <a class="link link--none" href="@Url.Action("Register", "Account")">Register</a>
+                        </div>
+                        <div class="footer__row">
+                            <a class="link link--none" href="@Url.Action("ForgottenPassword", "Account")">Forgotten Password</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="~/Content/lib/swiper/swiper.min.js"></script>
+    @RenderSection("js", false)
+</body>
+</html>

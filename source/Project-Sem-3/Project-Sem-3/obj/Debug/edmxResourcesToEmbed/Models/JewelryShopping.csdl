@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JewelryShoppingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="JewelryShoppingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminMsts" EntityType="JewelryShoppingModel.AdminMst" />
+    <EntitySet Name="BrandMsts" EntityType="JewelryShoppingModel.BrandMst" />
+    <EntitySet Name="CategoryMsts" EntityType="JewelryShoppingModel.CategoryMst" />
+    <EntitySet Name="CertificateMsts" EntityType="JewelryShoppingModel.CertificateMst" />
+    <EntitySet Name="DiscountMsts" EntityType="JewelryShoppingModel.DiscountMst" />
+    <EntitySet Name="InquiryMsts" EntityType="JewelryShoppingModel.InquiryMst" />
+    <EntitySet Name="ItemMsts" EntityType="JewelryShoppingModel.ItemMst" />
+    <EntitySet Name="OrderDetailMsts" EntityType="JewelryShoppingModel.OrderDetailMst" />
+    <EntitySet Name="OrderMsts" EntityType="JewelryShoppingModel.OrderMst" />
+    <EntitySet Name="StoneMsts" EntityType="JewelryShoppingModel.StoneMst" />
+    <EntitySet Name="StoneQualityMsts" EntityType="JewelryShoppingModel.StoneQualityMst" />
+    <EntitySet Name="StoneTypeMsts" EntityType="JewelryShoppingModel.StoneTypeMst" />
+    <EntitySet Name="UserMsts" EntityType="JewelryShoppingModel.UserMst" />
+    <EntitySet Name="ItemViews" EntityType="JewelryShoppingModel.ItemView" />
+    <AssociationSet Name="FK_ItemMst_BrandMst" Association="JewelryShoppingModel.FK_ItemMst_BrandMst">
+      <End Role="BrandMst" EntitySet="BrandMsts" />
+      <End Role="ItemMst" EntitySet="ItemMsts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemMst_CategoryMst" Association="JewelryShoppingModel.FK_ItemMst_CategoryMst">
+      <End Role="CategoryMst" EntitySet="CategoryMsts" />
+      <End Role="ItemMst" EntitySet="ItemMsts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemMst_CertificateMst" Association="JewelryShoppingModel.FK_ItemMst_CertificateMst">
+      <End Role="CertificateMst" EntitySet="CertificateMsts" />
+      <End Role="ItemMst" EntitySet="ItemMsts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Discount_ItemMst" Association="JewelryShoppingModel.FK_Discount_ItemMst">
+      <End Role="ItemMst" EntitySet="ItemMsts" />
+      <End Role="DiscountMst" EntitySet="DiscountMsts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetailMst_ItemMst" Association="JewelryShoppingModel.FK_OrderDetailMst_ItemMst">
+      <End Role="ItemMst" EntitySet="ItemMsts" />
+      <End Role="OrderDetailMst" EntitySet="OrderDetailMsts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoneMst_ItemMst" Association="JewelryShoppingModel.FK_StoneMst_ItemMst">
+      <End Role="ItemMst" EntitySet="ItemMsts" />
+      <End Role="StoneMst" EntitySet="StoneMsts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetailMst_OrderMst" Association="JewelryShoppingModel.FK_OrderDetailMst_OrderMst">
+      <End Role="OrderMst" EntitySet="OrderMsts" />
+      <End Role="OrderDetailMst" EntitySet="OrderDetailMsts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderMst_UserMst" Association="JewelryShoppingModel.FK_OrderMst_UserMst">
+      <End Role="UserMst" EntitySet="UserMsts" />
+      <End Role="OrderMst" EntitySet="OrderMsts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoneMst_StoneQualityMst" Association="JewelryShoppingModel.FK_StoneMst_StoneQualityMst">
+      <End Role="StoneQualityMst" EntitySet="StoneQualityMsts" />
+      <End Role="StoneMst" EntitySet="StoneMsts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoneMst_StoneTypeMst" Association="JewelryShoppingModel.FK_StoneMst_StoneTypeMst">
+      <End Role="StoneTypeMst" EntitySet="StoneTypeMsts" />
+      <End Role="StoneMst" EntitySet="StoneMsts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AdminMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BrandMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ItemMsts" Relationship="JewelryShoppingModel.FK_ItemMst_BrandMst" FromRole="BrandMst" ToRole="ItemMst" />
+  </EntityType>
+  <EntityType Name="CategoryMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ItemMsts" Relationship="JewelryShoppingModel.FK_ItemMst_CategoryMst" FromRole="CategoryMst" ToRole="ItemMst" />
+  </EntityType>
+  <EntityType Name="CertificateMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ItemMsts" Relationship="JewelryShoppingModel.FK_ItemMst_CertificateMst" FromRole="CertificateMst" ToRole="ItemMst" />
+  </EntityType>
+  <EntityType Name="DiscountMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Item_ID" Type="Int32" />
+    <Property Name="Percentage" Type="Byte" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ItemMst" Relationship="JewelryShoppingModel.FK_Discount_ItemMst" FromRole="DiscountMst" ToRole="ItemMst" />
+  </EntityType>
+  <EntityType Name="InquiryMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="ItemMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StyleCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Brand_ID" Type="Int32" Nullable="false" />
+    <Property Name="Category_ID" Type="Int32" Nullable="false" />
+    <Property Name="Certificate_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NumberInSet" Type="Byte" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="GoldKarat" Type="Byte" Nullable="false" />
+    <Property Name="GoldWeight" Type="Decimal" Nullable="false" Precision="10" Scale="3" />
+    <Property Name="Wastage" Type="Byte" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="MRP" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="BrandMst" Relationship="JewelryShoppingModel.FK_ItemMst_BrandMst" FromRole="ItemMst" ToRole="BrandMst" />
+    <NavigationProperty Name="CategoryMst" Relationship="JewelryShoppingModel.FK_ItemMst_CategoryMst" FromRole="ItemMst" ToRole="CategoryMst" />
+    <NavigationProperty Name="CertificateMst" Relationship="JewelryShoppingModel.FK_ItemMst_CertificateMst" FromRole="ItemMst" ToRole="CertificateMst" />
+    <NavigationProperty Name="DiscountMsts" Relationship="JewelryShoppingModel.FK_Discount_ItemMst" FromRole="ItemMst" ToRole="DiscountMst" />
+    <NavigationProperty Name="OrderDetailMsts" Relationship="JewelryShoppingModel.FK_OrderDetailMst_ItemMst" FromRole="ItemMst" ToRole="OrderDetailMst" />
+    <NavigationProperty Name="StoneMsts" Relationship="JewelryShoppingModel.FK_StoneMst_ItemMst" FromRole="ItemMst" ToRole="StoneMst" />
+  </EntityType>
+  <EntityType Name="OrderDetailMst">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+      <PropertyRef Name="Item_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="Int32" Nullable="false" />
+    <Property Name="Item_ID" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ItemMst" Relationship="JewelryShoppingModel.FK_OrderDetailMst_ItemMst" FromRole="OrderDetailMst" ToRole="ItemMst" />
+    <NavigationProperty Name="OrderMst" Relationship="JewelryShoppingModel.FK_OrderDetailMst_OrderMst" FromRole="OrderDetailMst" ToRole="OrderMst" />
+  </EntityType>
+  <EntityType Name="OrderMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CreditCard" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Byte" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="OrderDetailMsts" Relationship="JewelryShoppingModel.FK_OrderDetailMst_OrderMst" FromRole="OrderMst" ToRole="OrderDetailMst" />
+    <NavigationProperty Name="UserMst" Relationship="JewelryShoppingModel.FK_OrderMst_UserMst" FromRole="OrderMst" ToRole="UserMst" />
+  </EntityType>
+  <EntityType Name="StoneMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Item_ID" Type="Int32" />
+    <Property Name="StoneQuality_ID" Type="Int32" Nullable="false" />
+    <Property Name="StoneType_ID" Type="Int32" Nullable="false" />
+    <Property Name="Carat" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Dimension" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ItemMst" Relationship="JewelryShoppingModel.FK_StoneMst_ItemMst" FromRole="StoneMst" ToRole="ItemMst" />
+    <NavigationProperty Name="StoneQualityMst" Relationship="JewelryShoppingModel.FK_StoneMst_StoneQualityMst" FromRole="StoneMst" ToRole="StoneQualityMst" />
+    <NavigationProperty Name="StoneTypeMst" Relationship="JewelryShoppingModel.FK_StoneMst_StoneTypeMst" FromRole="StoneMst" ToRole="StoneTypeMst" />
+  </EntityType>
+  <EntityType Name="StoneQualityMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quality" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StoneMsts" Relationship="JewelryShoppingModel.FK_StoneMst_StoneQualityMst" FromRole="StoneQualityMst" ToRole="StoneMst" />
+  </EntityType>
+  <EntityType Name="StoneTypeMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StoneMsts" Relationship="JewelryShoppingModel.FK_StoneMst_StoneTypeMst" FromRole="StoneTypeMst" ToRole="StoneMst" />
+  </EntityType>
+  <EntityType Name="UserMst">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="OrderMsts" Relationship="JewelryShoppingModel.FK_OrderMst_UserMst" FromRole="UserMst" ToRole="OrderMst" />
+  </EntityType>
+  <EntityType Name="ItemView">
+    <Key>
+      <PropertyRef Name="Item_ID" />
+    </Key>
+    <Property Name="Item_ID" Type="Int32" Nullable="false" />
+    <Property Name="Discount" Type="Int32" />
+    <Property Name="Sale" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <Association Name="FK_ItemMst_BrandMst">
+    <End Type="JewelryShoppingModel.BrandMst" Role="BrandMst" Multiplicity="1" />
+    <End Type="JewelryShoppingModel.ItemMst" Role="ItemMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BrandMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ItemMst">
+        <PropertyRef Name="Brand_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemMst_CategoryMst">
+    <End Type="JewelryShoppingModel.CategoryMst" Role="CategoryMst" Multiplicity="1" />
+    <End Type="JewelryShoppingModel.ItemMst" Role="ItemMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ItemMst">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemMst_CertificateMst">
+    <End Type="JewelryShoppingModel.CertificateMst" Role="CertificateMst" Multiplicity="1" />
+    <End Type="JewelryShoppingModel.ItemMst" Role="ItemMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CertificateMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ItemMst">
+        <PropertyRef Name="Certificate_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Discount_ItemMst">
+    <End Type="JewelryShoppingModel.ItemMst" Role="ItemMst" Multiplicity="0..1" />
+    <End Type="JewelryShoppingModel.DiscountMst" Role="DiscountMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DiscountMst">
+        <PropertyRef Name="Item_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetailMst_ItemMst">
+    <End Type="JewelryShoppingModel.ItemMst" Role="ItemMst" Multiplicity="1" />
+    <End Type="JewelryShoppingModel.OrderDetailMst" Role="OrderDetailMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetailMst">
+        <PropertyRef Name="Item_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoneMst_ItemMst">
+    <End Type="JewelryShoppingModel.ItemMst" Role="ItemMst" Multiplicity="0..1" />
+    <End Type="JewelryShoppingModel.StoneMst" Role="StoneMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StoneMst">
+        <PropertyRef Name="Item_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetailMst_OrderMst">
+    <End Type="JewelryShoppingModel.OrderMst" Role="OrderMst" Multiplicity="1" />
+    <End Type="JewelryShoppingModel.OrderDetailMst" Role="OrderDetailMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetailMst">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderMst_UserMst">
+    <End Type="JewelryShoppingModel.UserMst" Role="UserMst" Multiplicity="1" />
+    <End Type="JewelryShoppingModel.OrderMst" Role="OrderMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderMst">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoneMst_StoneQualityMst">
+    <End Type="JewelryShoppingModel.StoneQualityMst" Role="StoneQualityMst" Multiplicity="1" />
+    <End Type="JewelryShoppingModel.StoneMst" Role="StoneMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StoneQualityMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StoneMst">
+        <PropertyRef Name="StoneQuality_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoneMst_StoneTypeMst">
+    <End Type="JewelryShoppingModel.StoneTypeMst" Role="StoneTypeMst" Multiplicity="1" />
+    <End Type="JewelryShoppingModel.StoneMst" Role="StoneMst" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StoneTypeMst">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StoneMst">
+        <PropertyRef Name="StoneType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Project_Sem_3.Models.InquiryMst>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Inquiry</h2>
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-tools">
+
+            @using (Html.BeginForm("Search", "Inquiry", FormMethod.Post))
+            {
+                <div class="input-group input-group-sm" style="width: 250px;">
+                    <input type="text" name="key" class="form-control float-right" placeholder="Search">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0" style="max-height: 500px">
+        <table class="table table-head-fixed">
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>Email</th>
+                    <th width="30%">Content</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td class="ellipsis-2">@item.Content</td>
+                    <td>@String.Format("{0:dd/MM/yyyy}", item.CreatedDate)</td>
+                    @{
+                        if (item.Status == true)
+                        {
+                            <td>Read</td>
+
+                        }
+                        else
+                        {
+                            <td style="color:red;">Unread</td>
+                        }
+                    }
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->

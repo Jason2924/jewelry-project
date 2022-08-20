@@ -1,0 +1,133 @@
+﻿.cart {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.cart__container {
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 50px 0px;
+}
+
+.cart__table {
+    width: 100%;
+}
+
+.cart__table-head {
+    text-align: center;
+}
+
+.cart__table-head td {
+  padding: 10px 0px;
+  background-color: #00a4e3;
+}
+
+.cart__table-image {
+  width: 10%;
+}
+
+.cart__table-name {
+  width: 40%;
+}
+
+.cart__table-price {
+  width: 10%;
+}
+
+.cart__table-quantity {
+  width: 20%;
+}
+
+.cart__table-total {
+  width: 15%;
+}
+
+.cart__table-delete {
+  width: 5%;
+}
+
+.cart__image {
+  padding: 5px 10px;
+}
+
+.cart__image img {
+  width: 100%;
+}
+
+.cart__code {
+  margin-bottom: 2px;
+  padding-left: 10px;
+}
+
+.cart__code a {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.cart__name {
+  padding-left: 10px;
+  font-size: 17px;
+  letter-spacing: 1.5px;
+}
+
+.cart__quantity-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cart__quantity-input {
+  width: 60px;
+  padding: 0px;
+  text-align: center;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #464646;
+  border-top: 1px solid #464646;
+  font-size: 15px;
+}
+
+.cart__quantity-button {
+  width: 30px;
+  height: 25px;
+  padding: 0px;
+  font-size: 19px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 15px 0px 0px 15px;
+  border: 1px solid #464646;
+  background-color: #fff;
+}
+
+.cart__quantity-button--right {
+  border-radius: 0px 15px 15px 0px;
+}
+
+.cart__quantity-full {
+  display: none;
+}
+
+.cart__total {
+  font-size: 18px;
+}
+
+.cart__button {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.cart__button a {
+  padding: 8px 25px;
+  font-size: 16px;
+  display: block;
+  -webkit-transition: background-color 300ms linear;
+  transition: background-color 300ms linear;
+}

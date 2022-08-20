@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JewelryShoppingModelStoreContainer" CdmEntityContainer="JewelryShoppingEntities">
+    <EntitySetMapping Name="AdminMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.AdminMst">
+        <MappingFragment StoreEntitySet="AdminMst">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BrandMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.BrandMst">
+        <MappingFragment StoreEntitySet="BrandMst">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.CategoryMst">
+        <MappingFragment StoreEntitySet="CategoryMst">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CertificateMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.CertificateMst">
+        <MappingFragment StoreEntitySet="CertificateMst">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscountMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.DiscountMst">
+        <MappingFragment StoreEntitySet="DiscountMst">
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InquiryMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.InquiryMst">
+        <MappingFragment StoreEntitySet="InquiryMst">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.ItemMst">
+        <MappingFragment StoreEntitySet="ItemMst">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MRP" ColumnName="MRP" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Wastage" ColumnName="Wastage" />
+          <ScalarProperty Name="GoldWeight" ColumnName="GoldWeight" />
+          <ScalarProperty Name="GoldKarat" ColumnName="GoldKarat" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="NumberInSet" ColumnName="NumberInSet" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Certificate_ID" ColumnName="Certificate_ID" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Brand_ID" ColumnName="Brand_ID" />
+          <ScalarProperty Name="StyleCode" ColumnName="StyleCode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetailMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.OrderDetailMst">
+        <MappingFragment StoreEntitySet="OrderDetailMst">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.OrderMst">
+        <MappingFragment StoreEntitySet="OrderMst">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreditCard" ColumnName="CreditCard" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoneMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.StoneMst">
+        <MappingFragment StoreEntitySet="StoneMst">
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Dimension" ColumnName="Dimension" />
+          <ScalarProperty Name="Carat" ColumnName="Carat" />
+          <ScalarProperty Name="StoneType_ID" ColumnName="StoneType_ID" />
+          <ScalarProperty Name="StoneQuality_ID" ColumnName="StoneQuality_ID" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoneQualityMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.StoneQualityMst">
+        <MappingFragment StoreEntitySet="StoneQualityMst">
+          <ScalarProperty Name="Quality" ColumnName="Quality" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoneTypeMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.StoneTypeMst">
+        <MappingFragment StoreEntitySet="StoneTypeMst">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMsts">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.UserMst">
+        <MappingFragment StoreEntitySet="UserMst">
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemViews">
+      <EntityTypeMapping TypeName="JewelryShoppingModel.ItemView">
+        <MappingFragment StoreEntitySet="ItemView">
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

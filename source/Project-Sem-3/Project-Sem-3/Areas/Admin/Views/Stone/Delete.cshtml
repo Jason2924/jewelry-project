@@ -1,0 +1,72 @@
+﻿@model Project_Sem_3.Models.StoneMst
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Stone</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Carat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dimension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dimension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemMst.StyleCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemMst.StyleCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoneQualityMst.Quality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoneQualityMst.Quality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoneTypeMst.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoneTypeMst.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

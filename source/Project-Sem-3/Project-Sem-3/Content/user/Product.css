@@ -1,0 +1,120 @@
+﻿.product {
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.product__container {
+    max-width: 1200px;
+    margin: 0px auto;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 250px auto;
+    grid-template-columns: 250px auto;
+}
+
+.product .side {
+    padding: 10px 25px;
+}
+
+.product .side__container {
+    margin-bottom: 25px;
+}
+
+.product .side__title {
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.product .side__box {
+    margin: 0px;
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.product .side__list {
+    margin-bottom: 5px;
+}
+
+.product .content__header {
+    margin-bottom: 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border-bottom: 1px solid #00a4e3;
+}
+
+.product .content__title {
+    padding-left: 10px;
+    font-size: 24px;
+}
+
+.product .content__sort {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.product .content__sort-select {
+    padding: 0px 20px;
+    border: none;
+    outline: none;
+}
+
+.product .content__sort-button {
+    background-color: #ffffff;
+    border: 1px solid #00a4e3;
+    outline: none;
+    color: #00a4e3;
+}
+
+.product .content__body {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 25% 25% 25% 25%;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.product .pagination-container {
+    width: 100%;
+}
+
+.product .pagination {
+    padding: 20px 0px;
+    margin: 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.product .pagination li {
+    margin: 0px 7px;
+}
+
+.product .pagination li.active a {
+    color: #ffffff;
+    background-color: #00a4e3;
+}
+
+.product .pagination li a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #00a4e3;
+    color: #00a4e3;
+    background-color: #ffffff;
+}
+
+.product .pagination li a:hover {
+    color: #ffffff;
+    background-color: #00a4e3;
+}

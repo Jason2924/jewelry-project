@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Project_Sem_3.Models.ItemMst>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Items</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@Html.ActionLink("Create New", "Create")</h3>
+
+        <div class="card-tools">
+
+            @using (Html.BeginForm("Search", "Item", FormMethod.Post))
+            {
+                <div class="input-group input-group-sm" style="width: 250px;">
+                    <input type="text" name="key" class="form-control float-right" placeholder="Search">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0" style="max-height: 500px">
+        <table class="table table-head-fixed text-nowrap">
+            <thead>
+                <tr>
+                    <th>StyleCode</th>
+                    <th>Name</th>
+                    <th>No. in set</th>
+                    <th>Quantity</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Brand</th>
+                    <th>Category</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.StyleCode</td>
+                        <td>@item.Name</td>
+                        <td>@item.NumberInSet</td>
+                        <td>@item.Quantity</td>
+                        <td>
+                            <img src="~/Content/images/product/@item.Image" alt="@item.Name" width="100px" />
+                        </td>
+                        <td>@item.Price</td>
+                        <td>@item.BrandMst.Name</td>
+                        <td>@item.CategoryMst.Name</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->

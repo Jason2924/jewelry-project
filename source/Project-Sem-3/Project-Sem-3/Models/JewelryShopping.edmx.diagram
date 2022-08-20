@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f4ce8eecda7e48f38628ea6c557511df" Name="Diagram1">
+        <EntityTypeShape EntityType="JewelryShoppingModel.AdminMst" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.BrandMst" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.CategoryMst" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.CertificateMst" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.DiscountMst" Width="1.5" PointX="5.25" PointY="11.25" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.InquiryMst" Width="1.5" PointX="8.75" PointY="8.75" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.ItemMst" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.OrderDetailMst" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.OrderMst" Width="1.5" PointX="3" PointY="11" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.StoneMst" Width="1.5" PointX="8.25" PointY="4.25" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.StoneQualityMst" Width="1.5" PointX="6" PointY="8.125" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.StoneTypeMst" Width="1.5" PointX="6" PointY="1.75" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.UserMst" Width="1.5" PointX="0.75" PointY="11.25" />
+        <EntityTypeShape EntityType="JewelryShoppingModel.ItemView" Width="1.5" PointX="8.75" PointY="0.75" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_ItemMst_BrandMst" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_ItemMst_CategoryMst" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_ItemMst_CertificateMst" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_Discount_ItemMst" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_OrderDetailMst_ItemMst" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_StoneMst_ItemMst" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_OrderDetailMst_OrderMst" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_OrderMst_UserMst" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_StoneMst_StoneQualityMst" />
+        <AssociationConnector Association="JewelryShoppingModel.FK_StoneMst_StoneTypeMst" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

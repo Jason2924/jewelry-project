@@ -1,0 +1,91 @@
+﻿@model Project_Sem_3.Models.UserMst
+@using Project_Sem_3.Models
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Details</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-user nav-icon"></i>
+            User
+        </h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">Username</dt>
+            <dd class="col-sm-8">@Model.Username</dd>
+            <dt class="col-sm-4">Full Name</dt>
+            <dd class="col-sm-8">@Model.FullName</dd>
+            <dt class="col-sm-4">Phone</dt>
+            <dd class="col-sm-8">@Model.Phone</dd>
+            <dt class="col-sm-4">Email</dt>
+            <dd class="col-sm-8">@Model.Email</dd>
+            <dt class="col-sm-4">Address</dt>
+            <dd class="col-sm-8">@Model.Address</dd>
+            <dt class="col-sm-4">City</dt>
+            <dd class="col-sm-8">@Model.City</dd>
+            <dt class="col-sm-4">Country</dt>
+            <dd class="col-sm-8">@Model.Country</dd>
+            <dt class="col-sm-4">Birthday</dt>
+            <dd class="col-sm-8">@Model.Birthday.Value.ToShortDateString()</dd>
+        </dl>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->
+
+<h2>User's Orders</h2>
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body table-responsive p-0" style="max-height: 300px">
+        <table class="table table-head-fixed text-nowrap">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Order Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderMsts)
+                {
+                    <tr>
+                        <td>@item.FullName</td>
+                        <td>@item.Phone</td>
+                        <td>@item.City</td>
+                        <td>@String.Format("{0:dd/MM/yyyy}", item.CreatedDate)</td>
+                        @{
+                            var status = Status.GetStatusList().Find(s => s.Number == item.Status);
+                        }
+                        <td>@status.Name</td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<!-- /.card -->

@@ -1,0 +1,361 @@
+﻿@model Project_Sem_3.Models.Product
+@section css {
+    <link rel="stylesheet" href="~/Content/user/Product-detail.css">
+    <link rel="stylesheet" href="~/Content/user/account.css">
+}
+@section js {
+    <script src="~/Scripts/user/Product-Detail.js"></script>
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav class="breadcrumb">
+    <ul class="breadcrumb__container">
+        <li class="breadcrumb__list">
+            <a class="link" href="@Url.Action("Index", "Home")">Home</a>
+        </li>
+        &nbsp;|&nbsp;
+        <li class="breadcrumb__list">
+            <a class="link" href="@Url.Action("Index", "Product")">Products</a>
+        </li>
+        &nbsp;|&nbsp;
+        <li class="breadcrumb__list">
+            <span class="text text--second">@Model.Item.Name</span>
+        </li>
+    </ul>
+</nav>
+<div class="title-box">
+    <div class="title-box__container">
+        <h1 class="text title-box__text">Product Details</h1>
+    </div>
+</div>
+<div class="product-detail">
+    <div class="product-detail__container">
+        <div class="product-detail__header">
+            <div class="product-detail__image">
+                <img src="~/Content/images/product/@Model.Item.Image" alt="@Model.Item.Name">
+            </div>
+            <div class="product-detail__information">
+                <div class="product-detail__name">
+                    <span class="text">@Model.Item.Name</span>
+                </div>
+                <div class="product-detail__others">
+                    <div class="product-detail__price">
+                        @{
+                            if (Model.Item.Price > 0)
+                            {
+                                if (Model.Discount <= 0)
+                                {
+                                    <div class="product-detail__current-price text">
+                                        <span>$@Model.Item.Price</span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="product-detail__current-price text">
+                                        <span>$@Model.Sale</span>
+                                    </div>
+                                    <div class="product-detail__origin-price text--second">
+                                        <span>$@Model.Item.Price</span>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="product-detail__current-price text">
+                                    <span>Contact us</span>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="product-detail__specification">
+                        <div class="product-detail__specification-key">MRP :</div>
+                        <div>
+                            <a class="link link--second">$@Model.Item.MRP</a>
+                        </div>
+                    </div>
+                    <div class="product-detail__specification">
+                        <div class="product-detail__specification-key">Style Code :</div>
+                        <div>
+                            <a class="link link--second">@Model.Item.StyleCode</a>
+                        </div>
+                    </div>
+                    <div class="product-detail__specification">
+                        <div class="product-detail__specification-key">Brand :</div>
+                        <div>
+                            <a class="link" href="@Url.Action("Brand", "Product", new { id = Model.Item.Brand_ID })">@Model.Item.BrandMst.Name</a>
+                        </div>
+                    </div>
+                    <div class="product-detail__specification">
+                        <div class="product-detail__specification-key">Category :</div>
+                        <div>
+                            <a class="link" href="@Url.Action("Category", "Product", new { id = Model.Item.Category_ID })">@Model.Item.CategoryMst.Name</a>
+                        </div>
+                    </div>
+                    <div class="product-detail__specification">
+                        <div class="product-detail__specification-key">Stones :</div>
+                        <div class="product-detail__specification-value">
+                            @{ foreach (var stoneType in ViewBag.StoneType)
+                                {
+                                    <a class="link" href="@Url.Action("Stone", "Product", new { id = stoneType.ID })">@stoneType.Name</a>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="product-detail__quantity">
+                        @{
+                            using (Html.BeginForm("Insert", "Cart", FormMethod.Get))
+                            {
+                                if (Model.Item.Price > 0)
+                                {
+                                    <input type="hidden" name="id" value="@Model.Item.ID" />
+                                    <div class="product-detail__quantity-box">
+                                        <button class="product-detail__quantity-button product-detail__quantity-button--left"
+                                                type="button">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash"
+                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                      d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                                            </svg>
+                                        </button>
+                                        <input class="product-detail__quantity-input" type="text" name="quantity" value="1" readonly>
+                                        <button class="product-detail__quantity-button product-detail__quantity-button--right"
+                                                type="button">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus"
+                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                }
+                                <div class="product-detail__cart">
+                                    @if (Model.Item.Price > 0)
+                                    {
+                                        <div class="product-detail__cart-button">
+                                            <button class="button button-main" type="submit">Add to Cart</button>
+                                        </div>
+                                    }
+                                    <div>
+                                        <a class="button button-main button-main--none inquiry-button" href="javascript:;">Custom Product</a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @{ using (Html.BeginForm("Inquiry", "ProductDetail", FormMethod.Post, new { @class = "form form--inquiry", @style = "margin-top: 30px;" }))
+            {
+                <input type="hidden" name="productId" value="@Model.Item.ID" />
+                <input type="hidden" name="styleCode" value="@Model.Item.StyleCode" />
+                <div class="text form__zone">Customer Information</div>
+                <div class="form__box form__box--three">
+                    <div class="form__container">
+                        <div class="form__row">
+                            <span class="text">Full Name :</span>
+                            <input type="text" name="fullName" required>
+                        </div>
+                        <div class="form__error text--fourth">
+                            @{
+                                if (TempData["FullName"] != null)
+                                {
+                                    <span>@TempData["FullName"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form__container">
+                        <div class="form__row">
+                            <span class="text">Phone :</span>
+                            <input type="text" name="phone" required>
+                        </div>
+                        <div class="form__error text--fourth">
+                            @{
+                                if (TempData["Phone"] != null)
+                                {
+                                    <span>@TempData["Phone"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form__container">
+                        <div class="form__row">
+                            <span class="text">Email :</span>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form__error text--fourth">
+                            @{
+                                if (TempData["Email"] != null)
+                                {
+                                    <span>@TempData["Email"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="form__box form__box--three">
+                    <div class="form__container">
+                        <div class="form__row">
+                            <span class="text">Address :</span>
+                            <input type="text" name="address" required>
+                        </div>
+                        <div class="form__error text--fourth">
+                            @{
+                                if (TempData["Address"] != null)
+                                {
+                                    <span>@TempData["Address"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form__container">
+                        <div class="form__row">
+                            <span class="text">City :</span>
+                            <input type="text" name="city" required>
+                        </div>
+                        <div class="form__error text--fourth">
+                            @{
+                                if (TempData["City"] != null)
+                                {
+                                    <span>@TempData["City"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form__container">
+                        <div class="form__row">
+                            <span class="text">Country :</span>
+                            <input type="text" name="country" required>
+                        </div>
+                        <div class="form__error text--fourth">
+                            @{
+                                if (TempData["Country"] != null)
+                                {
+                                    <span>@TempData["Country"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="text form__zone">Product Inquiry</div>
+                <div class="form__box form__box--three">
+                    <div class="form__container">
+                        <div class="form__row">
+                            <span class="text">Brand :</span>
+                            <input type="text" name="brand" required>
+                        </div>
+                        <div class="form__error text--fourth">
+                            @{
+                                if (TempData["Brand"] != null)
+                                {
+                                    <span>@TempData["Brand"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form__container">
+                        <div class="form__row">
+                            <span class="text">Gold Karat :</span>
+                            <input type="text" name="goldKarat" required>
+                        </div>
+                        <div class="form__error text--fourth">
+                            @{
+                                if (TempData["GoldKarat"] != null)
+                                {
+                                    <span>@TempData["GoldKarat"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form__container">
+                        <div class="form__row">
+                            <span class="text">Gold Weight :</span>
+                            <input type="text" name="goldWeight" required>
+                        </div>
+                        <div class="form__error text--fourth">
+                            @{
+                                if (TempData["GoldWeight"] != null)
+                                {
+                                    <span>@TempData["GoldWeight"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="text form__zone">Stones Inquiry</div>
+                <div class="form__stone-zone">
+                    <!-- Render row -->
+                </div>
+                <div class="form__button">
+                    <a class="form__link link form__add-stone" href="javascript:;">Add Stone</a>
+                    <button class="button button-main">Send</button>
+                </div>
+            }
+        }
+        <div class="product-detail__body">
+            <div class="product-detail__description">
+                <div class="product-detail__description-title text text--second">
+                    <span>Description</span>
+                </div>
+                <div class="product-detail__description-box text text--second">@Model.Item.Description</div>
+            </div>
+            <div class="product-detail__details">
+                <div class="product-detail__details-title text text--second">
+                    <span>Stones & Details</span>
+                </div>
+                <div class="product-detail__details-box text text--second">
+                    <div class="product-detail__details-row product-detail__details-row--border">
+                        <div>Gold Karat :</div>
+                        <div>@Model.Item.GoldKarat</div>
+                    </div>
+                    <div class="product-detail__details-row product-detail__details-row--border">
+                        <div>Gold Weight :</div>
+                        <div>@Model.Item.GoldWeight Gram</div>
+                    </div>
+                    <div class="product-detail__details-row product-detail__details-row--border">
+                        <div>Number in set :</div>
+                        <div>@Model.Item.NumberInSet</div>
+                    </div>
+                    <div class="product-detail__details-row product-detail__details-row--border">
+                        <div>Certificate Type :</div>
+                        <div>@Model.Item.CertificateMst.Type</div>
+                    </div>
+                    @{ foreach (var stone in Model.Item.StoneMsts)
+                        {
+                            <div class="product-detail__details-down">
+                                <div class="product-detail__details-row">
+                                    <div>@stone.StoneTypeMst.Name :</div>
+                                    <div>@stone.Carat Carat</div>
+                                    <div>
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
+                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="product-detail__details-down-list">
+                                    <div class="product-detail__details-row">
+                                        <div>Quality :</div>
+                                        <div>@stone.StoneQualityMst.Quality</div>
+                                    </div>
+                                    <div class="product-detail__details-row">
+                                        <div>Dimension :</div>
+                                        <div>@stone.Dimension</div>
+                                    </div>
+                                    <div class="product-detail__details-row">
+                                        <div>Amount :</div>
+                                        <div>@stone.Amount Peices</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

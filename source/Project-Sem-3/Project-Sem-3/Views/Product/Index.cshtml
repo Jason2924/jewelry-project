@@ -1,0 +1,135 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Project_Sem_3.Models.Product>
+@section css {
+    <link rel="stylesheet" href="~/Content/user/Product.css">
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav class="breadcrumb">
+    <ul class="breadcrumb__container">
+        <li class="breadcrumb__list">
+            <a class="link" href="@Url.Action("Index", "Home")">Home</a>
+        </li>
+        &nbsp;|&nbsp;
+        <li class="breadcrumb__list">
+            <span class="text text--second">Products</span>
+        </li>
+    </ul>
+</nav>
+<div class="title-box">
+    <div class="title-box__container">
+        <h1 class="text title-box__text">Products</h1>
+    </div>
+</div>
+<div class="product">
+    <div class="product__container">
+        <div class="side">
+            <div class="side__container">
+                <div class="side__title text">Categories</div>
+                <ul class="side__box">
+                    @{ foreach (var category in ViewBag.Categories)
+                        {
+                            <li class="side__list">
+                                <a class="link link--second" href="@Url.Action("Category", "Product", new { id = category.ID })">@category.Name</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="side__container">
+                <div class="side__title text">Brands</div>
+                <ul class="side__box">
+                    @{ foreach (var brand in ViewBag.Brands)
+                        {
+                            <li class="side__list">
+                                <a class="link link--second" href="@Url.Action("Brand", "Product", new { id = brand.ID })">@brand.Name</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="side__container">
+                <div class="side__title text">Stones</div>
+                <ul class="side__box">
+                    @{ foreach (var stone in ViewBag.Stones)
+                        {
+                            <li class="side__list">
+                                <a class="link link--second" href="@Url.Action("Stone", "Product", new { id = stone.ID })">@stone.Name</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content__container">
+                <div class="content__header">
+                    <div class="content__title text">All Products</div>
+                    <div class="content__sort">
+                        <span class="text text--second">Sort by : </span>
+                        @using (Html.BeginForm("Index", "Product", FormMethod.Post))
+                        {
+                            <select class="content__sort-select" name="sort">
+                                <option value="default">Default</option>
+                                <option value="name-asc">Name - A to Z</option>
+                                <option value="name-desc">Name - Z to A</option>
+                                <option value="price-desc">Price - High to Low</option>
+                                <option value="price-asc">Price - Low to High</option>
+                            </select>
+                            <button class="content__sort-button" type="submit">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-funnel-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z" />
+                                </svg>
+                            </button>
+                        }
+                    </div>
+                </div>
+                <div class="content__body">
+                    <!-- Item Start -->
+                    @{ foreach (var product in Model)
+                        {
+                            <div class="item">
+                                <div class="item__box">
+                                    <div class="item__image">
+                                        <a href="@Url.Action("Index", "ProductDetail", new { id = product.Item.ID })">
+                                            <img src="~/Content/images/product/@product.Item.Image" alt="@product.Item.Name">
+                                        </a>
+                                    </div>
+                                    <div class="item__information">
+                                        <div>
+                                            <a class="link link--second" href="@Url.Action("Index", "ProductDetail", new { id = product.Item.ID })">@product.Item.Name</a>
+                                        </div>
+                                        <div class="text text--second">
+                                            @{
+                                                if (product.Item.Price > 0)
+                                                {
+                                                    if (product.Discount <= 0)
+                                                    {
+                                                        <span>$@product.Item.Price</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>$@product.Sale <small><del>$@product.Item.Price</del></small></span>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span>Contact us</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <ul class="content__pagination">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, ViewBag.Sort }))
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

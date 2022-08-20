@@ -1,0 +1,107 @@
+﻿@model Project_Sem_3.Models.UserMst
+@using Project_Sem_3.Models;
+@section css {
+    <link rel="stylesheet" href="~/Content/user/Account.css">
+}
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav class="breadcrumb">
+    <ul class="breadcrumb__container">
+        <li class="breadcrumb__list">
+            <a class="link" href="@Url.Action("Index","Home")">Home</a>
+        </li>
+        &nbsp;|&nbsp;
+        <li class="breadcrumb__list">
+            <span class="text text--second">Profile</span>
+        </li>
+    </ul>
+</nav>
+<div class="title-box">
+    <div class="title-box__container">
+        <h1 class="text title-box__text">Profile</h1>
+    </div>
+</div>
+<div class="account">
+    <div class="account__container">
+        <div class="form form--profile">
+            <div class="form__box">
+                <div class="form__row">
+                    <span class="text">Username :</span>
+                    <span class="text">@Model.Username</span>
+                </div>
+                <div class="form__row">
+                    <span class="text">Full Name :</span>
+                    <span class="text">@Model.FullName</span>
+                </div>
+            </div>
+            <div class="form__box">
+                <div class="form__row">
+                    <span class="text">Email :</span>
+                    <span class="text">@Model.Email</span>
+                </div>
+                <div class="form__row">
+                    <span class="text">Phone :</span>
+                    <span class="text">@Model.Phone</span>
+                </div>
+            </div>
+            <div class="form__box">
+                <div class="form__row">
+                    <span class="text">Address :</span>
+                    <span class="text">@Model.Address</span>
+                </div>
+                <div class="form__row">
+                    <span class="text">Birthday :</span>
+                    <span class="text">@String.Format("{0:MM/dd/yyyy}", Model.Birthday)</span>
+                </div>
+            </div>
+
+            <div class="form__history">
+                <div class="form__history-title text">Histories</div>
+                <table class="form__history-table">
+                    <thead class="form__history-head">
+                        <tr>
+                            <td class="text text--none center">No</td>
+                            <td class="text text--none center">Full Name</td>
+                            <td class="text text--none center">Address</td>
+                            <td class="text text--none center">Status</td>
+                            <td class="text text--none center">Created Date</td>
+                        </tr>
+                    </thead>
+                    <tbody class="form__history-body">
+                        @{
+                            if (ViewBag.OrderList.Count > 1)
+                            {
+                                int number = 1;
+                                foreach (var order in ViewBag.OrderList)
+                                {
+                                    <tr>
+                                        <td class="text text--second">@number</td>
+                                        <td class="text text--second">@order.FullName</td>
+                                        <td class="text text--second">@order.Address, @order.City, @order.Country</td>
+                                        @{
+                                            var status = Status.GetStatusList().Find(s => s.Number == order.Status);
+                                        }
+                                        <td class="text text--second">@status.Name</td>
+                                        <td class="text text--second">@String.Format("{0:MM/dd/yyyy}", order.CreatedDate)</td>
+                                        @{ number++; }
+                                    </tr>
+                                }
+                            }
+                            else {
+                                <tr>
+                                    <td class="text text--second center" colspan="5">There have no any orders</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="form__button">
+                <a href="@Url.Action("Edit", "Account")" class="button button-main button--link" style="margin-right: 15px;">Edit</a>
+                <a href="@Url.Action("Logout", "Account")" class="button button-main button--link">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>

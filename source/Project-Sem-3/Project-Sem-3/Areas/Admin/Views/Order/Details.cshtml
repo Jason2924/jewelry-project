@@ -1,0 +1,132 @@
+﻿@model Project_Sem_3.Models.OrderMst
+@using Project_Sem_3.Models;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Details</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-file-invoice-dollar nav-icon"></i>
+            Order
+        </h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="row">
+                    <dt class="col-sm-4">Username</dt>
+                    <dd class="col-sm-8">@Model.UserMst.Username</dd>
+                    <dt class="col-sm-4">Phone</dt>
+                    <dd class="col-sm-8">@Model.Phone</dd>
+                    <dt class="col-sm-4">Email</dt>
+                    <dd class="col-sm-8">@Model.Email</dd>
+                    <dt class="col-sm-4">Credit Card</dt>
+                    <dd class="col-sm-8">@Model.CreditCard</dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="row">
+                    <dt class="col-sm-4">Full Name</dt>
+                    <dd class="col-sm-8">@Model.FullName</dd>
+                    <dt class="col-sm-4">Address</dt>
+                    <dd class="col-sm-8">@Model.Address</dd>
+                    <dt class="col-sm-4">City</dt>
+                    <dd class="col-sm-8">@Model.City</dd>
+                    <dt class="col-sm-4">Country</dt>
+                    <dd class="col-sm-8">@Model.Country</dd>
+                </dl>
+            </div>
+        </div>
+        <dl class="row">
+            <dt class="col-sm-2">Order Date</dt>
+            <dd class="col-sm-4">@Model.CreatedDate.Value.ToShortDateString()</dd>
+            <dt class="col-sm-2">Status</dt>
+            @{
+                var status = Status.GetStatusList().Find(s => s.Number == Model.Status);
+            }
+            <dd class="col-sm-4">@status.Name</dd>
+        </dl>
+    </div>
+    <!-- /.card-body -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                Ordered Items
+            </h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            </div>
+        </div>
+        <!-- /.card-header (small card) -->
+        <div class="card-body table-responsive p-0" style="max-height: 300px">
+            <table class="table table-striped text-nowrap">
+                <thead>
+                    <tr>
+                        <th>Style Code</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        decimal total = 0;
+                    }
+                    @foreach (var item in Model.OrderDetailMsts)
+                    {
+                        <tr>
+                            <td>@item.ItemMst.StyleCode</td>
+                            <td>@item.ItemMst.Name</td>
+                            <td>$@item.Price</td>
+                            <td>@item.Quantity</td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", "Item", new { id = item.Item_ID }, null)
+                            </td>
+                        </tr>
+                        total += item.Price * item.Quantity;
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body (small card) -->
+    </div>
+    <!-- /.card (small card) -->
+    <div class="card-footer row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <h3>Total: $@total</h3>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                @{
+                    if (status.Number != 4 && status.Number != 0)
+                    {
+                        using (Html.BeginForm("ChangeStatus", "Order", FormMethod.Post, new { @class = "col-sm-6" }))
+                        {
+                            var statusNext = Status.GetStatusList().Find(s => s.Number == Model.Status + 1);
+                            <input type="hidden" name="orderId" value="@Model.ID" />
+                            <input type="hidden" name="status" value="@statusNext.Number" />
+                            <button type="submit" class="btn btn-block btn-success btn-lg" style="text-transform: uppercase;">@statusNext.Name</button>
+                        }
+                        using (Html.BeginForm("ChangeStatus", "Order", FormMethod.Post, new { @class = "col-sm-6" }))
+                        {
+                            <input type="hidden" name="orderId" value="@Model.ID" />
+                            <input type="hidden" name="status" value="0" />
+                            <button type="submit" class="btn btn-block btn-danger btn-lg">CANCEL</button>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!-- /.card-footer -->
+</div>
+<!-- /.card -->
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

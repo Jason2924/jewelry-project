@@ -1,0 +1,50 @@
+﻿@section css {
+    <link rel="stylesheet" href="~/Content/user/account.css">
+}
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav class="breadcrumb">
+    <ul class="breadcrumb__container">
+        <li class="breadcrumb__list">
+            <a class="link" href="">Home</a>
+        </li>
+        &nbsp;|&nbsp;
+        <li class="breadcrumb__list">
+            <span class="text text--second">Login</span>
+        </li>
+    </ul>
+</nav>
+<div class="title-box">
+    <div class="title-box__container">
+        <h1 class="text title-box__text">Login</h1>
+    </div>
+</div>
+<div class="account">
+    <div class="account__container">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form" }))
+        {
+            <div class="text text--fourth center" style="margin-bottom: 20px;">
+                @ViewBag.Error
+            </div>
+            <div class="form__container">
+                <div class="form__row">
+                    <span class="text">Username :</span>
+                    <input type="text" name="username" required>
+                </div>
+            </div>
+            <div class="form__container">
+                <div class="form__row">
+                    <span class="text">Password :</span>
+                    <input type="password" name="password" required>
+                </div>
+            </div>
+            <div class="form__button">
+                <a class="form__link link link--second" href="@Url.Action("ForgottenPassword", "Account")">Forgotten Password</a>
+                <a class="form__link link" href="@Url.Action("Register", "Account")">Register</a>
+                <button type="submit" class="button button-main">Login</button>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿.slide {
+    max-width: 1200px;
+    margin: 0px auto;
+}
+
+.slide img {
+    width: 100%;
+}
+
+.product-roller {
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 50px 0px;
+}
+
+.product-roller__title {
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.product-roller__title-text {
+    padding-bottom: 10px;
+    font-size: 35px;
+    font-weight: 500;
+    border-bottom: 2px solid #00a4e3;
+    display: inline-block;
+}

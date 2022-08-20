@@ -1,0 +1,117 @@
+﻿@using Project_Sem_3.Models;
+@section css {
+    <link rel="stylesheet" href="~/Content/user/cart.css">
+}
+@section js {
+    <script src="~/Scripts/user/cart.js"></script>
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav class="breadcrumb">
+    <ul class="breadcrumb__container">
+        <li class="breadcrumb__list">
+            <a class="link" href="@Url.Action("Index", "Home")">Home</a>
+        </li>
+        &nbsp;|&nbsp;
+        <li class="breadcrumb__list">
+            <span class="text text--second">Cart</span>
+        </li>
+    </ul>
+</nav>
+<div class="title-box">
+    <div class="title-box__container">
+        <h1 class="text title-box__text">Cart</h1>
+    </div>
+</div>
+<div class="cart">
+    <div class="cart__container">
+        @{
+            List<Cart> cartList = (List<Cart>)Session["cart"];
+            if (cartList == null || cartList.Count() == 0)
+            {
+                <div class="text text--second center">
+                    There are have no any product in your cartshop
+                </div>
+            } else
+            {
+                <table class="cart__table">
+                    <thead class="cart__table-head text text--none">
+                        <tr>
+                            <td class="cart__table-image">Image</td>
+                            <td class="cart__table-name">Name</td>
+                            <td class="cart__table-price">Price</td>
+                            <td class="cart__table-quantity">Quantity</td>
+                            <td class="cart__table-total">Total</td>
+                            <td class="cart__table-delete">Delete</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            decimal total = 0;
+                            foreach (var cart in cartList)
+                            {
+                                <tr>
+                                    <td class="cart__image">
+                                        <a href="@Url.Action("Index", "ProductDetail", new { code = cart.Item.ID })">
+                                            <img src="~/Content/images/product/@cart.Item.Image" alt="@cart.Item.Name">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div class="cart__code">
+                                            <a class="link link--second" href="@Url.Action("Index", "ProductDetail", new { id = cart.Item.ID })">@cart.Item.StyleCode</a>
+                                        </div>
+                                        <a class="cart__name link" href="@Url.Action("Index", "ProductDetail", new { id = cart.Item.ID })">@cart.Item.Name</a>
+                                    </td>
+                                    <td class="center text text--second">$@cart.Price</td>
+                                    <td class="cart__quantity">
+                                        <div class="cart__quantity-box">
+                                            <button class="cart__quantity-button cart__quantity-button--left" type="button">
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dash"
+                                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                          d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
+                                                </svg>
+                                            </button>
+                                            <input class="cart__quantity-input" type="text" value="@cart.Quantity" data-id="@cart.Item.ID" readonly>
+                                            <button class="cart__quantity-button cart__quantity-button--right" type="button">
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus"
+                                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    @{
+                                        decimal amount = cart.Price * cart.Quantity;
+                                        total += amount;
+                                    }
+                                    <td class="center text text--second">$@amount</td>
+                                    <td class="center">
+                                        <a class="link" href="@Url.Action("Delete", "Cart", new { id = cart.Item.ID })">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash"
+                                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                <path fill-rule="evenodd"
+                                                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        <tr>
+                            <td class="text right cart__total" colspan="4">Total price :</td>
+                            <td class="text right cart__total" colspan="2">$@total</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="cart__button">
+                    <a href="@Url.Action("Index", "Payment")" class="button button-main">Buy now</a>
+                </div>
+            }
+        }
+    </div>
+</div>
